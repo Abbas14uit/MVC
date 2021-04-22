@@ -9,7 +9,7 @@ pipeline {
 				}
 				stage('Build') {
     					steps {
-    					    bat "\"${tool 'MSBuild'}\" Appz.sln /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:SkipInvalidConfigurations=true /t:build /p:Configuration=Release /p:Platform=\"Any CPU\" /p:DeleteExistingFiles=True /p:publishUrl=G:\\MVC_publish dest:auto -setParam:name="IIS Web Application Name",value="Default Web Site/MVC"
+    					    bat "\"${tool 'MSBuild'}\" Appz.sln /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:SkipInvalidConfigurations=true /t:build /p:Configuration=Release /p:Platform=\"Any CPU\" /p:DeleteExistingFiles=True /p:publishUrl=G:\\MVC_publish -dest:iisapp='MVC',computerName='8081/msdeploy.axd?site=MVC',authType='basic',username='visualapp',password='visualapp' -enableRule:AppOffline"
     					}
 				}
 			}
